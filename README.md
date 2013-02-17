@@ -7,4 +7,4 @@ the state of the Model.  Finally, the View changes its display according to the 
 
 Libraries that have to be added to the path:  
 
-Lucene, SWT 
+Lucene, SWT, Apache Commons FileUtils
