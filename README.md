@@ -8,3 +8,9 @@ the state of the Model.  Finally, the View changes its display according to the 
 Libraries that have to be added to the path:  
 
 Lucene 3.6.2, SWT (http://www.eclipse.org/swt/  Releases section), Apache Commons FileUtils (http://archive.apache.org/dist/commons/io/)
+
+Questions : 
+
+<b>What would be an adequate GUI for this application?<\b> 
+I can think of the following items that should be included: List of names of result
+files after a query, a text area where the content of the e-mail will be displayed, a text box for writing the query.  
