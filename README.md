@@ -11,6 +11,11 @@ Lucene 3.6.2, SWT (http://www.eclipse.org/swt/  Releases section), Apache Common
 
 Questions : 
 
-<b>What would be an adequate GUI for this application?<\b> 
+<b>What would be an adequate GUI for this application?
+
 I can think of the following items that should be included: List of names of result
 files after a query, a text area where the content of the e-mail will be displayed, a text box for writing the query.  
+
+<b>Is indexing done prior to starting the GUI? Is the GUI Working with indexed data already?
+
+If not, then we have to add some index commands stuff on the GUI. 
