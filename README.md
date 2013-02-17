@@ -7,4 +7,4 @@ the state of the Model.  Finally, the View changes its display according to the 
 
 Libraries that have to be added to the path:  
 
-Lucene, SWT (http://www.eclipse.org/swt/  Releases section), Apache Commons FileUtils (http://archive.apache.org/dist/commons/io/)
+Lucene 3.6.2, SWT (http://www.eclipse.org/swt/  Releases section), Apache Commons FileUtils (http://archive.apache.org/dist/commons/io/)
