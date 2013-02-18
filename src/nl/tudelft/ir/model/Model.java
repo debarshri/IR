@@ -13,8 +13,10 @@ import nl.tudelft.ir.view.View;
 
 /**
  * The Model class maintains the application state that will be displayed
- * on the View. 
- * @author admin1
+ * on the View. Right now the states are the files that are located in the
+ * input directory.  For the IR project the files will be the indexed
+ * e-mails. 
+ * @author mcadariu
  *
  */
 
@@ -23,7 +25,7 @@ public class Model{
 	/*
 	 * List of text files that are currently in the state.
 	 */
-	static private Collection<File> textFiles;
+	private Collection<File> textFiles;
 	
 	
 	/*
@@ -45,7 +47,6 @@ public class Model{
 		this.v=v;
 	}
 
-
 	/**
 	 * This method sets the path to the input source
 	 */
@@ -56,8 +57,7 @@ public class Model{
 		
 		if(path == "")
 			return;
-		
-			
+				
 		//covert path string to abstract path 
 		File baseDirectory = new File(path);
 		
@@ -131,18 +131,5 @@ public class Model{
 		v.updateResults(content);
 		
 	}
-	
-	
-	
-	/**
-	 * Overriding of toString method for testing purposes.
-	 */
-	public String toString(){	
-				
-				
-		return "";
-		
-	}
-	
 
 }
