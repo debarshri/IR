@@ -22,3 +22,6 @@ display its contents in the right half of the window.
 Either you download and import the exported project, either download sources and in eclipse use the "link source" option.
 
 In either cases, check your build path to see if you have to also include the dependencies that are enumerated above.
+
+Feel free to change stuff - like the directory path could be read from an environment variable that was established
+prior to the GUI startup via a Python script, for example. 
