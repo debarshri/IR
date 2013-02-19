@@ -25,3 +25,9 @@ In either cases, check your build path to see if you have to also include the de
 
 Feel free to change stuff - like the directory path could be read from an environment variable that was established
 prior to the GUI startup via a Python script, for example. 
+
+<b> Web Project
+
+It is quite unconventionally programmed
+
+We have the classes for Creating Index, Pre-processing, Searching and respective utility methods which are called in the JSP scriplets
