@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.custom.CCombo;
 
@@ -25,7 +26,6 @@ import org.eclipse.swt.custom.CCombo;
 public class View {
 
 	protected Shell shlEmailSearch;
-	private Text directoryDisplay;
 	private Text queryInput;
 	private Text resultDisplay;
 	private Controller c;
@@ -107,36 +107,12 @@ public class View {
 		shlEmailSearch.setText("Email search");
 		shlEmailSearch.setLayout(null);
 		
-		directoryDisplay = new Text(shlEmailSearch, SWT.BORDER);
-		directoryDisplay.setBounds(10, 29, 174, 25);
-		
-		Label lblNewLabel = new Label(shlEmailSearch, SWT.NONE);
-		lblNewLabel.setBounds(10, 10, 174, 15);
-		lblNewLabel.setText("Directory path:");
-		
-		Button btnGo = new Button(shlEmailSearch, SWT.NONE);
-		btnGo.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-							
-				if(directoryDisplay.getText()=="")
-					return;
-				if(directoryDisplay.getText()==null)
-					return;
-				
-				c.setDirectoryPath(directoryDisplay.getText());
-				
-			}
-		});
-		btnGo.setBounds(190, 29, 79, 27);
-		btnGo.setText("Go");
-		
 		Label lblQueryInput = new Label(shlEmailSearch, SWT.NONE);
-		lblQueryInput.setBounds(10, 79, 121, 15);
+		lblQueryInput.setBounds(10, 10, 121, 15);
 		lblQueryInput.setText("Query Input:");
 		
 		queryInput = new Text(shlEmailSearch, SWT.BORDER);
-		queryInput.setBounds(10, 100, 174, 25);
+		queryInput.setBounds(10, 31, 174, 25);
 		
 		Button btnSubmit = new Button(shlEmailSearch, SWT.NONE);
 		btnSubmit.addSelectionListener(new SelectionAdapter() {
@@ -155,11 +131,11 @@ public class View {
 				
 			}
 		});
-		btnSubmit.setBounds(275, 98, 79, 27);
+		btnSubmit.setBounds(275, 31, 79, 27);
 		btnSubmit.setText("Submit");
 		
-		resultList = new List(shlEmailSearch, SWT.BORDER);
-		resultList.setBounds(10, 191, 344, 209);
+		resultList = new List(shlEmailSearch, SWT.BORDER|SWT.V_SCROLL);
+		resultList.setBounds(10, 91, 344, 309);
 			
 		resultList.addSelectionListener(new SelectionListener() {
 		      public void widgetSelected(SelectionEvent event) {
@@ -179,25 +155,26 @@ public class View {
 		});
 		
 		Label lblResultList = new Label(shlEmailSearch, SWT.NONE);
-		lblResultList.setBounds(10, 170, 57, 15);
+		lblResultList.setBounds(10, 70, 57, 15);
 		lblResultList.setText("Result list:");
 		
 		Label label = new Label(shlEmailSearch, SWT.SEPARATOR | SWT.VERTICAL);
 		label.setBounds(376, 10, 2, 390);
 		
 		Label label_1 = new Label(shlEmailSearch, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label_1.setBounds(10, 150, 368, 2);
+		label_1.setBounds(10, 62, 368, 2);
 		
-		resultDisplay = new Text(shlEmailSearch, SWT.BORDER);
+		resultDisplay = new Text(shlEmailSearch, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+		resultDisplay.setLayoutData(new GridData(GridData.FILL_BOTH));
 		resultDisplay.setBounds(384, 10, 317, 390);
 		
 		Label lblQueryType = new Label(shlEmailSearch, SWT.NONE);
-		lblQueryType.setBounds(190, 79, 79, 15);
+		lblQueryType.setBounds(190, 10, 79, 15);
 		lblQueryType.setText("Query type:");
 		
 		queryType = new Combo(shlEmailSearch, SWT.NONE);
 		queryType.setItems(new String[] {"Boolean", "Phrase"});
-		queryType.setBounds(190, 98, 79, 27);
+		queryType.setBounds(190, 31, 79, 27);
 
 	}
 }

@@ -1,0 +1,55 @@
+Message-ID: <32188312.1075848343202.JavaMail.evans@thyme>
+Date: Fri, 1 Dec 2000 09:34:00 -0800 (PST)
+From: suresh.raghavan@enron.com
+To: harry.arora@enron.com, jeff.bartlett@enron.com, donald.w.herrick@enron.com, 
+	kristi.demaiolo@enron.com, tobias.munk@enron.com, 
+	ross.mesquita@enron.com, miguel.vasquez@enron.com, 
+	vanessa.carranza@enron.com, barbara.lewis@enron.com, 
+	andrea.crump@enron.com, dale.neuner@enron.com
+Subject: STUFF IN STAGING
+Cc: john.spitz@enron.com, sireesha.chillakuru@enron.com
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Bcc: john.spitz@enron.com, sireesha.chillakuru@enron.com
+X-From: Suresh Raghavan
+X-To: Harry Arora, Jeff Bartlett, donald.w.herrick@enron.com, Kristi Demaiolo, Tobias Munk, Ross Mesquita, Miguel Vasquez, Vanessa Carranza, Barbara Lewis, Andrea Crump, Dale Neuner
+X-cc: John Spitz, Sireesha Chillakuru
+X-bcc: 
+X-Folder: \Harpreet_Arora_Nov2001\Notes Folders\All documents
+X-Origin: ARORA-H
+X-FileName: harora.nsf
+
+Folks:
+
+John and Sireesha have just pushed to staging a bunch of enhancements / bug 
+fixes / new features.  Included in them are:
+
+ 1.  Configurable Questionnaire
+ 2.  Invitee Lists Part I (this does NOT include the upload of the contact 
+lists)
+ 3.  User Statistics
+ 4.  Fix for the Issuing Entity
+ 5.  Auction security fix
+ 6.  Auction enhancements Part I 
+ 7.  Rewrite of the view deal page impacting permission levels in EVERY domain
+ 8.  The Adapter for the User Registration piece (this should be seamless to 
+the user, but be happy that     this change ELIMINATES message brokers from 
+this process)
+ 9.  Various bug fixes including those relating to view closing etc.
+
+The remaining auction enhancements are planned to be pushed sometime early 
+next week.
+
+I would recommend everybody spend some time testing next week and reflect 
+their comments / suggestions to John and I.  
+
+The location of the test site is:  http://testfinweb1.ecomtest.enron.com.  
+You also need to establish new IDs and passwords (since your production IDs 
+and Passwords will not work!).  The admin ID and password (if you need to 
+approve users and deals to test them are - ID: jspitz; Pwd: pass).
+
+We do PLAN on pushing all this stuff to PRODUCTION (barring any major bugs or 
+mishaps) next FRIDAY - Dec 8th, 2000.
+
+Look forward to your comments.  Thanks.  SR:-)

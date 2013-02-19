@@ -1,0 +1,78 @@
+Message-ID: <2732874.1075848344191.JavaMail.evans@thyme>
+Date: Fri, 2 Feb 2001 06:59:00 -0800 (PST)
+From: dan.bruce@enron.com
+To: louise.kitchen@enron.com
+Subject: FW: DealBench 2/2 auction failure cause and solution
+Cc: philippe.bibi@enron.com, harry.arora@enron.com, suresh.raghavan@enron.com
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Transfer-Encoding: 7bit
+Bcc: philippe.bibi@enron.com, harry.arora@enron.com, suresh.raghavan@enron.com
+X-From: Dan Bruce
+X-To: Louise Kitchen
+X-cc: Philippe A Bibi, Harry Arora, Suresh Raghavan
+X-bcc: 
+X-Folder: \Harpreet_Arora_Nov2001\Notes Folders\All documents
+X-Origin: ARORA-H
+X-FileName: harora.nsf
+
+Louise -
+
+Below is the report on yesterday's DealBench issues.  Please let me know if 
+you would like further information.
+
+- Dan
+
+ -----Original Message-----
+From:  Elrod, Hal  
+Sent: Friday, February 02, 2001 2:53 PM
+To: Bruce, Dan
+Cc: Hillier, Bob; Spitz, John
+Subject: DealBench 2/2 auction failure cause and solution
+Importance: High
+
+
+Event Sequence
+? Lot 1 of two Sabre auctions went through without issues
+? Between Lots, there was a scheduled 15 minute interval.  About 10 minutes 
+into this period, developers monitoring the system saw errors showing up on 
+the View Deal page.  Within minutes, users reported the same problem 
+reentering the Sabre deal.  The rest of the site was unaffected
+? Within five minutes, the problem was isolated to the document management 
+subsystem of DealBench.  Solution Attempts:
+? Restart the process that returns documents
+? Move the documents off the deal
+Solution:
+? Create a second deal, same structure as the first, but without the 
+documents.
+? The auction on the second Lot started approximately 40 minutes late.  Once 
+started, it continued without further errors through several auction 
+extensions, finally resulting in a $500K savings for Sabre.
+
+Cause
+? Document management process stopped returning documents and was instead 
+returning null values.  This caused the View Deal page to appear "hung". The 
+Document to be served was the "deal agent logo", a special document type that 
+is displayed at the top of the page.
+
+Contributing Factors
+? The run.bat script, which launches the document management Java process, 
+was not logging its status
+? The SQL statement that retrieves the deal agent logo did not correctly 
+handle the special case of a document file being moved.  Therefore, moving 
+the deal agent logo to another deal did not solve the error.   
+? run.bat had never failed previously, and the process had been running 
+consistently for over 60 days.  Therefore it was not initially suspected as a 
+problem source.
+
+Fixes
+? An immediate stop-work on further enhancements to DealBench until system 
+stability has been addressed
+? Isolate document management process in the test environment, and thoroughly 
+test all possible failure scenarios.
+? Start logging and tracking of run.bat script and document management process
+? Make document management process fully redundant, so it will failover in 
+the event of error
+? Increase monitoring on new log files
+? Initiate an in-depth architectural review with Kevin Montagne's team, to 
+identify further areas to improve system robustness

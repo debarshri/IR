@@ -1,0 +1,131 @@
+Message-ID: <7153932.1075861399653.JavaMail.evans@thyme>
+Date: Thu, 25 Oct 2001 11:22:25 -0700 (PDT)
+From: harry.arora@enron.com
+To: iris.mack@enron.com
+Subject: RE: Models
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Transfer-Encoding: quoted-printable
+X-From: Arora, Harry </O=ENRON/OU=NA/CN=RECIPIENTS/CN=HARORA>
+X-To: Mack, Iris </O=ENRON/OU=NA/CN=RECIPIENTS/CN=Imack>
+X-cc: 
+X-bcc: 
+X-Folder: \HARORA (Non-Privileged)\Arora, Harry\Sent Items
+X-Origin: Arora-H
+X-FileName: HARORA (Non-Privileged).pst
+
+Iris
+
+what is the difference between this spark spread function call and the one =
+being used in the spreadsheets we use ?
+
+
+Harry
+
+
+ -----Original Message-----
+From: =09Mack, Iris =20
+Sent:=09Wednesday, October 24, 2001 10:34 AM
+To:=09Danilov, Viacheslav; Issler, Paulo
+Cc:=09Arora, Harry
+Subject:=09FW: Models
+
+ << File: CrackSpreadOptions.xls >>=20
+
+Hi Slava,
+
+=09Paulo says you have some questions about what we're doing with spark spr=
+eads.
+
+=09He did not give me any specifics as to what you needed.  Give me at call=
+ at X3-6711 for more details.
+
+=09In the mean time, I have been developing exotic options modules/tutorial=
+s for the power trading floor.  One of the modules is on spark spreads  - p=
+lease see attached file.
+
+=09
+Regards,
+Iris
+
+
+
+
+
+ -----Original Message-----
+From: =09Issler, Paulo =20
+Sent:=09Wednesday, October 24, 2001 10:26 AM
+To:=09Mack, Iris
+Cc:=09Danilov, Viacheslav
+Subject:=09FW: Models
+
+
+Iris:
+I think you are the expert on how we are trading spark spreads (if we are d=
+oing any). Slava wants to know more about it. I appreciate if you contact h=
+im directly.=20
+Many Thanks.
+Paulo Issler
+
+ -----Original Message-----
+From: =09Danilov, Viacheslav =20
+Sent:=09Tuesday, October 23, 2001 2:05 AM
+To:=09Issler, Paulo
+Subject:=09RE: Models
+
+Paulo,
+
+thank you very much.=20
+we will look at all your work.
+
+just to remind you on spark spread options.
+
+many thanks,
+
+Slava
+
+
+ -----Original Message-----
+From: =09Issler, Paulo =20
+Sent:=0923 October 2001 01:00
+To:=09Danilov, Viacheslav
+Subject:=09Models
+
+Slava:
+Here are the files related to the models I mentioned in our phone coversati=
+on.
+
+FwdFwd Vols:
+
+Here is a spreadshet implementing a technique for calculating fwd fwd volat=
+ilities for seasonal vol curves. The approach avoids the issue of geting ne=
+gative fwd fwd variances when using the traditional approach. It makes nece=
+ssary, however, to develop a specific fwd fwd vol curve for each contract m=
+onth.=20
+
+Here is how it works:
+=091) Create a variance curve: Var =3D vol*vol*(Ti-t)
+=092) Fit a desoasonalized curve with functional form: y =3D a*(tb)?=093) c=
+alculate fwd-fwd variances for the desoasonal curve:?=094) Calculate fwd-fw=
+d vols for each month by multiplying the ?=09    fwd-fwd variance curve by =
+a factor equal to:?=09=09=09SQRT(Var(Contract Month)/Var(fit))??? << File: =
+FwdFwd.xls >> ?I implemented a C code for calculating that. This, with the =
+omicron vols may be used to model the gas curve evolution in a HJM framewor=
+k.?? << File: fwdfwd.c >>  << File: FwdFwdw.c >> ??Swing Options:?Here is t=
+he code and documentation for the swing option:?? << File: XLCALL32.LIB >> =
+ << File: bico.c >>  << File: factln.c >>  << File: FRAMEWRK.C >>  << File:=
+ FRAMEWRK.H >>  << File: FSSwing.c >>  << File: FSSwingOpt.c >>  << File: F=
+XSwing.c >>  << File: FXSwingOpt.c >>  << File: gammln.c >>  << File: Inter=
+polate.c >>  << File: nrutil.c >>  << File: nrutil.h >>  << File: SwingOpt.=
+def >>  << File: SwingOptW.c >>  << File: SwingW.c >>  << File: XLCALL.H >>=
+  << File: Bdt.c >>  << File: Swing Model.doc >> ?Here are the spreadshets =
+examples:?? << File: FSSwingOpt.xls >>  << File: FXSwingOpt.xls >> ?LookBac=
+k:?Here is my implementation for the lookback option with fixed strike. It =
+uses an analytical solution in which prices are sampled continiously over t=
+ime. It still provides a good approximation for a discrete daily sampling:?=
+? << File: XLCALL32.LIB >>  << File: Cumnorm.c >>  << File: framewrk.c >>  =
+<< File: framewrk.h >>  << File: FxLKBK.c >>  << File: FxLKBK.def >>  << Fi=
+le: Integration.c >>  << File: lkbkTEST.xls >>  << File: nrutil.c >>  << Fi=
+le: nrutil.h >>  << File: put.c >>  << File: xFxLKBK.c >>  << File: XLCALL.=
+H >>  << File: call.c >> ?Let me know if you got them all.?Give me a call w=
+ith your questions/concerns.?Thanks.?Paulo Issler?
