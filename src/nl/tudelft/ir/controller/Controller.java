@@ -2,6 +2,13 @@ package nl.tudelft.ir.controller;
 
 import java.util.HashMap;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.util.Version;
+
 import nl.tudelft.ir.model.Model;
 
 /**
@@ -31,6 +38,11 @@ public class Controller {
 	 */
 	private HashMap<Integer,Object> dictionaryQueries;
 	
+	/*
+	 * The Analyzer used for parsing the query.
+	 */
+	private Analyzer analyzer;
+	
 	/**
 	 * Public constructor for the Controller.
 	 * Receives a reference to the Model as parameter.
@@ -45,6 +57,9 @@ public class Controller {
 		//in the drop-down, we do:
 		// dictionaryQueries.add(0,new BooleanQuery()) or something along
 		// these lines
+		
+		analyzer = new StandardAnalyzer(Version.LUCENE_31);
+		
 	}
 		
 	/**
@@ -52,7 +67,7 @@ public class Controller {
 	 */
 	public void setDirectoryPath(String path){
 		m.setPath(path);
-		m.toString();
+		
 	}
 	
 	/**
@@ -64,7 +79,8 @@ public class Controller {
 	
 	/**
 	 * This method determines the model's state to change as a result
-	 * to a query constructed in the View. 
+	 * to a query constructed in the View. The query is checked before
+	 * issued to the Model. 
 	 * 
 	 * Parameters : query text, query code. The query code is for deciding
 	 * on which query object to instantiate from the Lucene library for 
@@ -72,13 +88,26 @@ public class Controller {
 	 * ). 
 	 */
 	public void query(String query, int code){
-		//check if query is well formulated
+		//check if query is well formulated;trim and everything
 		
 		//first get the query object from the dictionary, then 
 		//issue it to the model. 
-			
-		System.out.println("In controller received query="+query+
-				"code="+code);
+		
+		String field = "contents";
+		
+		QueryParser parser = new QueryParser(Version.LUCENE_31, field, 
+				analyzer);
+		
+		Query _query = null;
+		
+		try {
+			_query = parser.parse(query);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		m.changeState(_query);
 	}
 	
 	/**
