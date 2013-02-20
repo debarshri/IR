@@ -12,12 +12,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div style="background:#f5f5f5;padding:20px;color:#000;margin-left:-15%;margin-top:30px;width:150%;">
+<div style="background:#f5f5f5;padding:20px;color:#000;margin-left:-50%;margin-top:30px;width:200%;">
 <div>
 </div>
 
-<div>
+<div style="font-size:10px;">	
 <a href=""> See all</a><br /><br />
+
+<div style="font-weight:bold;float:left;width:20%;"> Subject </div><br />
+
+
+
+<br />
 <%
 String query = request.getParameter("q");
 String queryType = request.getParameter("queryType");

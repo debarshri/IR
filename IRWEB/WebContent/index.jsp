@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
 <title>Enron Mail Search</title>
 <script>
+
 function showHint(str)
 {
 var xmlhttp;
@@ -38,13 +39,15 @@ xmlhttp.onreadystatechange=function()
 xmlhttp.open("GET","ajax_call.jsp?q="+str+"&queryType="+queryType+"&fieldType="+fieldType+"&pageSize="+pageSize,true);
 xmlhttp.send();
 }
+
+
 </script>
 </head>
 <body>
 <div style="background:#000;color:#fff;padding:10px;font-weight:bold;font-size:18px;margin:5px;" > Enron Mail Search</div>
 
 	<form class="formstyle" name="input" style="width:40%;margin-left:30%;margin-top:50px;" action="result.jsp" method="post"> 
-        <input  class="input-text" name="q" type="text" id="txt1" onkeyup="showHint(this.value)" />
+        <input  class="input-text" name="q" type="text" id="txt1" onkeyup="showHint(this.value)" onfocus="showHint(this.value)" />
         <input class="Search-Button" type="Submit" value="Go"> 
        <br /><br /> 
         <select id="querySelect" name="queryType" style="border-style:solid;border-width:1px;border-color:#eee;background:#f5f5f5;">
@@ -55,7 +58,7 @@ xmlhttp.send();
 </select>
 
 
-<select id="fieldSelect" name="Field" style="border-style:solid;border-width:1px;border-color:#eee;background:#f5f5f5;">
+<select id="fieldSelect" name="Field" style="border-style:solid;border-width:1px;border-color:#eee;background:#f5f5f5;" >
   <option value="contents">Contents</option>
   <option value="inbox">Inbox</option>
   <option value="sent_item">Sent Items</option>
