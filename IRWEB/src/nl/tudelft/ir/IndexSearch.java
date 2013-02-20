@@ -24,12 +24,33 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
+/**
+ * Responsible for Searching
+ * 
+ * 
+ * @author debarshi
+ *
+ */
 public class IndexSearch {
 
+	/**
+	 * 
+	 * Returns a list of Matched hits
+	 * 
+	 * @param field
+	 * @param queryString
+	 * @param hitsPerPage
+	 * @return
+	 * @throws ParseException
+	 * @throws CorruptIndexException
+	 * @throws IOException
+	 */
+	
+	static Config conf = new Config();
 	
 	public ArrayList<Result> Search(String field,String queryString, int hitsPerPage) throws ParseException, CorruptIndexException, IOException
 	{
-		Config conf = new Config();
+		
 		conf.readProp();
 		ArrayList<Result> result = new ArrayList<Result>();
 		IndexReader reader = IndexReader
@@ -41,10 +62,11 @@ public class IndexSearch {
 		
 		QueryParser parser = new QueryParser(Version.LUCENE_31, field, analyzer);
 		/**
-		 *  From Lucene Demo - for reading the query  
+		 *  Reference : From Lucene Demo - for reading the query  
 		 */
 		while (true) {	
 
+			//Check this part
 			String line = queryString != null ? queryString : in.readLine();
 
 			if (line == null || line.length() == -1) {
@@ -72,7 +94,19 @@ public class IndexSearch {
 		return result;
 	}
 	
-	
+	/**
+	 * 
+	 * Returns a list of Paginated Results
+	 * 
+	 * @param in
+	 * @param searcher
+	 * @param query
+	 * @param hitsPerPage
+	 * @param raw
+	 * @param interactive
+	 * @return
+	 * @throws IOException
+	 */
 
 	public static ArrayList<Result> doPagingSearch(BufferedReader in,
 			IndexSearcher searcher, Query query, int hitsPerPage, boolean raw,
@@ -84,6 +118,7 @@ public class IndexSearch {
 		ScoreDoc[] hits = results.scoreDocs;
 
 		int numTotalHits = results.totalHits;
+	
 		System.out.println(numTotalHits + " total matching documents");
 
 		int start = 0;
@@ -105,12 +140,24 @@ public class IndexSearch {
 				String path = doc.get("path");
 				if (path != null) {
                    Result res = new Result();
+                   
                /**
                 * Result is an object with fields subject, to, from etc.
                 * We create an array list which is returned
                 */
+      				String subject = doc.get("subject");
+       				String to = doc.get("to");
+       				String from = doc.get("from");
+       		//		String cc = doc.get("Cc");
+
                    res.setPath(path);
-				
+                   res.setTo(to);
+                   res.setFrom(from);
+                   res.setSubject(subject);
+                  
+
+
+
 					
 					result.add(res);
 				} else {
@@ -169,4 +216,6 @@ public class IndexSearch {
 		return result;
 		
 	}
+
+	
 }

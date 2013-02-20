@@ -26,7 +26,7 @@ int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 IndexSearch idx = new IndexSearch();
 ArrayList<Result> res = idx.Search(field, query, pageSize);
 for (int i = 0; i < res.size(); i++) {
-	out.print(res.get(i).getPath()+"<br />");
+	out.print("<a href=read.jsp?q="+res.get(i).getPath()+">"+res.get(i).getSubject()+" <br />");
 }
 
 

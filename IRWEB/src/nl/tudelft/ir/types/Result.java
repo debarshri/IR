@@ -1,5 +1,14 @@
 package nl.tudelft.ir.types;
 
+/**
+ * 
+ * This Class is a Result object used in the JSP pages to 
+ * display is a user-friendly format.
+ * We obtain a ArrayList of Results as output in result.jsp
+ * 
+ * @author debarshi
+ *
+ */
 
 public class Result {
 	
@@ -7,6 +16,9 @@ public class Result {
     private String to = null;
 	private String from = null;
 	private String path = null;
+	private int totalHitCount;
+	private long timeTaken;
+
 	
 	
 	public String getSubject() {
@@ -32,6 +44,18 @@ public class Result {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public int getTotalHitCount() {
+		return totalHitCount;
+	}
+	public void setTotalHitCount(int totalHitCount) {
+		this.totalHitCount = totalHitCount;
+	}
+	public long getTimeTaken() {
+		return timeTaken;
+	}
+	public void setTimeTaken(long timeTaken) {
+		this.timeTaken = timeTaken;
 	}
 
 }

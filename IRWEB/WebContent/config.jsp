@@ -17,7 +17,7 @@
         <input  class="input-text" name="docsPath" type="text" />
             <br /><br />  Index Path<br />
               <input  class="input-text" name="indexPath" type="text"  />
-<br /><br />Update
+<br /><br />Create New Indexes
 <select name="create" style="border-style:solid;border-width:1px;border-color:#eee;background:#f5f5f5;">
   <option value="true">True</option>
   <option value="false">False</option>
