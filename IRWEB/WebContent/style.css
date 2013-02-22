@@ -223,26 +223,12 @@ input[type=checkbox]:check:after{
                     
 }
 
-a.one2:active{	color: #fff;
-           }
-a.one2:visited{
-	color: #fff;}
+
 a.one:link{
-	color: #fff;}
+	color: #000;}
 
 
 
-a.one2
-{
-text-decoration:none;
-color:#fff;
-
-}
-a.one2:hover{
-color: #fff;
-text-decoration:underline;
-
-       }
 
 .banner{
 margin-right:48%;
@@ -251,6 +237,22 @@ color:#000;
 height:400px;
 text-align:center;
 
+}
+
+td{
+	background:#fff;
+color:#000;
+height:40px;
+width:30%;
+text-align:center;
+
+}
+th{
+		background:#111;
+		color:#fff;
+		padding:5px;
+	
+	
 }
 
 
@@ -282,13 +284,13 @@ text-align:center;
 			z-index:1002;
 			overflow: auto;
 		}
-	a.one:active{	color: #fff;
+	a.one:active{	color: #000;
            
         background-color:#fff;}
 a.one:visited{
-	color: #fff;}
+	color: #000;}
 a.one:link{
-	color: #fff;}
+	color: #000;}
 
 
 
@@ -298,8 +300,8 @@ text-decoration:none;
 
 }
 a.one:hover{
-color: #000;
-background-color:#fff;
+color: #fff;
+background-color:#ccc;
 box-shadow: #fff 0 0 10px;
 -moz-border-radius:2px; 
 -webkit-border-radius:2px; 

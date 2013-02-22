@@ -1,4 +1,4 @@
-package nl.tudelft.ir;
+package nl.tudelft.ir.model;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +15,7 @@ public class Config {
 		Properties prop = new Properties();
 
 		// load a properties file
-		prop.load(new FileInputStream("/tmp/config.properties"));
+		prop.load(new FileInputStream("config.properties"));
 
 		// get the property value and print it out
 		setDocsPath(prop.getProperty("docsPath"));
@@ -34,7 +34,7 @@ public class Config {
 		prop.setProperty("update", Boolean.toString(create));
 
 		// save properties to project root folder
-		prop.store(new FileOutputStream("/tmp/config.properties"), null);
+		prop.store(new FileOutputStream("config.properties"), null);
 
 	}
 

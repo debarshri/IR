@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-
 import nl.tudelft.ir.types.Result;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -29,7 +28,7 @@ import org.apache.lucene.util.Version;
  * 
  * 
  * @author debarshi
- *
+ * 
  */
 public class IndexSearch {
 
@@ -45,28 +44,29 @@ public class IndexSearch {
 	 * @throws CorruptIndexException
 	 * @throws IOException
 	 */
-	
+
 	static Config conf = new Config();
-	
-	public ArrayList<Result> Search(String field,String queryString, int hitsPerPage) throws ParseException, CorruptIndexException, IOException
-	{
-		
+
+	public ArrayList<Result> Search(String field, String queryString,
+			int hitsPerPage) throws ParseException, CorruptIndexException,
+			IOException {
+
 		conf.readProp();
 		ArrayList<Result> result = new ArrayList<Result>();
-		IndexReader reader = IndexReader
-				.open(FSDirectory.open(new File(conf.getIndexPath())));
+		IndexReader reader = IndexReader.open(FSDirectory.open(new File(conf
+				.getIndexPath())));
 		IndexSearcher searcher = new IndexSearcher(reader);
 		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
 
 		BufferedReader in = null;
-		
+
 		QueryParser parser = new QueryParser(Version.LUCENE_31, field, analyzer);
 		/**
-		 *  Reference : From Lucene Demo - for reading the query  
+		 * Reference : From Lucene Demo - for reading the query
 		 */
-		while (true) {	
+		while (true) {
 
-			//Check this part
+			// Check this part
 			String line = queryString != null ? queryString : in.readLine();
 
 			if (line == null || line.length() == -1) {
@@ -81,8 +81,8 @@ public class IndexSearch {
 			Query query = parser.parse(line);
 			System.out.println("Searching for: " + query.toString(field));
 
-             boolean raw = false;
-             result = doPagingSearch(in, searcher, query, hitsPerPage, raw,
+			boolean raw = false;
+			result = doPagingSearch(in, searcher, query, hitsPerPage, raw,
 					queryString == null);
 
 			if (queryString != null) {
@@ -93,7 +93,7 @@ public class IndexSearch {
 		reader.close();
 		return result;
 	}
-	
+
 	/**
 	 * 
 	 * Returns a list of Paginated Results
@@ -113,19 +113,18 @@ public class IndexSearch {
 			boolean interactive) throws IOException {
 
 		ArrayList<Result> result = new ArrayList<Result>();
-		
+
 		TopDocs results = searcher.search(query, 5 * hitsPerPage);
 		ScoreDoc[] hits = results.scoreDocs;
 
 		int numTotalHits = results.totalHits;
-	
+
 		System.out.println(numTotalHits + " total matching documents");
 
 		int start = 0;
 		int end = Math.min(numTotalHits, hitsPerPage);
 
 		while (true) {
-			
 
 			end = Math.min(hits.length, start + hitsPerPage);
 
@@ -139,26 +138,22 @@ public class IndexSearch {
 				Document doc = searcher.doc(hits[i].doc);
 				String path = doc.get("path");
 				if (path != null) {
-                   Result res = new Result();
-                   
-               /**
-                * Result is an object with fields subject, to, from etc.
-                * We create an array list which is returned
-                */
-      				String subject = doc.get("subject");
-       				String to = doc.get("to");
-       				String from = doc.get("from");
-       		//		String cc = doc.get("Cc");
+					Result res = new Result();
 
-                   res.setPath(path);
-                   res.setTo(to);
-                   res.setFrom(from);
-                   res.setSubject(subject);
-                  
+					/**
+					 * Result is an object with fields subject, to, from etc. We
+					 * create an array list which is returned
+					 */
+					String subject = doc.get("subject");
+					String to = doc.get("to");
+					String from = doc.get("from");
+					// String cc = doc.get("Cc");
 
+					res.setPath(path);
+					res.setTo(to);
+					res.setFrom(from);
+					res.setSubject(subject);
 
-
-					
 					result.add(res);
 				} else {
 					System.out.println((i + 1) + ". "
@@ -212,10 +207,9 @@ public class IndexSearch {
 				end = Math.min(numTotalHits, start + hitsPerPage);
 			}
 		}
-		
+
 		return result;
-		
+
 	}
 
-	
 }
