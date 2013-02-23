@@ -39,7 +39,7 @@ public class View {
 		if(Long.valueOf(idx.getTimeTaken()) != null)
 		{
 
-			setTimeTaken(Long.toString(idx.getTimeTaken())	);
+			setTimeTaken(Long.toString(idx.getTimeTaken()));
 				
 		}
 		}catch(Exception e)
