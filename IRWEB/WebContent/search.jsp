@@ -58,6 +58,7 @@ Field
       <option value="from">From</option>
         <option value="subject">Subject</option>
           <option value="date">Date</option>
+          <option value="cc">Cc</option>
   
 </select>
 <br />

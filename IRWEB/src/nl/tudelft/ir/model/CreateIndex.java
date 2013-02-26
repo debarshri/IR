@@ -1,5 +1,11 @@
 package nl.tudelft.ir.model;
 
+
+
+import nl.tudelft.ir.synonym.SynonymAnalyzer;
+import nl.tudelft.ir.synonym.SynonymEngine;
+import nl.tudelft.ir.synonym.Synonyms;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -20,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * 
@@ -39,6 +46,7 @@ public class CreateIndex {
 	 * @param indexPath
 	 * @param create
 	 */
+	public static HashMap<String, String[]> hashmap = new HashMap<String,String[]>();
 	private Config conf;
 	private String timeTaken;
 	public void indexGenUtils() {
@@ -59,12 +67,40 @@ public class CreateIndex {
 							+ "' does not exist or is not readable, please check the path");
 			System.exit(1);
 		}
+		// write the hashmap on disk - this should be do only once on a computer and then used for all
+	    // synonym indexes; maybe you can add this option only once in the guy don't know..have no ideas
+
+	    Synonyms.writeHashMap();
+
+	        // read the hashmap for the synonyms - added by Madalin
+	        ///////////////////////////////////////////////////////////////
+	        File file = new File("hash.txt");
+	        try
+	        {
+	           BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+	           String l;
+	           while((l = br.readLine()) != null)
+	           {
+	              String[] arg = l.split("[-]", 1);
+	              String p = arg[0].replaceAll(" ", "");
+	              System.out.println(p);
+	              String[] syns = arg[1].split("[,]");
+	              hashmap.put(p,syns);
+	           }
+	           br.close();
+	        }catch (IOException e){
+	                System.out.println("error");
+	    }
+
+		
 		Date start = new Date();
 		try {
 			System.out.println("Indexing to directory...");
 
 			Directory dir = FSDirectory.open(new File(conf.getIndexPath()));
-			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+		//	Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+			SynonymEngine engine = new SynonymEngine();
+		      Analyzer analyzer = new SynonymAnalyzer(engine);
 			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_31,
 					analyzer);
 
@@ -89,7 +125,7 @@ public class CreateIndex {
 
 			// writer.forceMerge(1);
 
-			
+            writer.commit();
                writer.close();
 
 			Date end = new Date();
@@ -204,7 +240,7 @@ public class CreateIndex {
 					Field FromField = new Field("from", from, Field.Store.YES,
 							Field.Index.ANALYZED);
 					doc.add(FromField);
-					Field ccField = new Field("cc", cc, Field.Store.YES,
+					Field ccField = new Field("cc", cc, Field.Store.NO,
 							Field.Index.ANALYZED);
 					doc.add(ccField);
 					Field subField = new Field("subject", subject,

@@ -25,6 +25,14 @@
   
 </select>
       <br /><br />
+      Enable Did you mean feature?
+<select name="spellCheck" style="border-style:solid;border-width:1px;border-color:#eee;background:#f5f5f5;">
+  <option value="false">False</option>
+  <option value="true">True</option>
+
+  
+</select> 
+<br /><br />
         <input class="Search-Button" type="Submit" value="Go"> 
        <br /><br /> 
     

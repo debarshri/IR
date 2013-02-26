@@ -16,8 +16,11 @@
 String docsPath = request.getParameter("docsPath");
 String indexPath = request.getParameter("indexPath");
 boolean create = Boolean.parseBoolean(request.getParameter("create"));
+boolean spellCheck = Boolean.parseBoolean(request.getParameter("spellCheck"));
+
 Config conf = new Config();
-conf.writeProp(docsPath, indexPath, create);
+conf.writeProp(docsPath, indexPath, create,spellCheck);
+
 out.write(conf.getDocsPath());
 
 

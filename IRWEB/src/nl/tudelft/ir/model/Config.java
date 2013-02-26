@@ -10,6 +10,7 @@ public class Config {
 	private String docsPath;
 	private String indexPath;
 	private boolean create;
+	private boolean spellCheck;
 
 	public void readProp() throws FileNotFoundException, IOException {
 		Properties prop = new Properties();
@@ -21,10 +22,11 @@ public class Config {
 		setDocsPath(prop.getProperty("docsPath"));
 		setIndexPath(prop.getProperty("indexPath"));
 		setCreate(Boolean.parseBoolean(prop.getProperty("update")));
+		setSpellCheck(Boolean.parseBoolean(prop.getProperty("spell")));
 
 	}
 
-	public void writeProp(String docsPath, String indexPath, boolean create)
+	public void writeProp(String docsPath, String indexPath, boolean create, boolean spell)
 			throws FileNotFoundException, IOException {
 		Properties prop = new Properties();
 
@@ -32,6 +34,8 @@ public class Config {
 		prop.setProperty("docsPath", docsPath);
 		prop.setProperty("indexPath", indexPath);
 		prop.setProperty("update", Boolean.toString(create));
+		prop.setProperty("spell", Boolean.toString(spell));
+
 
 		// save properties to project root folder
 		prop.store(new FileOutputStream("config.properties"), null);
@@ -60,6 +64,14 @@ public class Config {
 
 	public void setCreate(boolean create) {
 		this.create = create;
+	}
+
+	public boolean isSpellCheck() {
+		return spellCheck;
+	}
+
+	public void setSpellCheck(boolean spellCheck) {
+		this.spellCheck = spellCheck;
 	}
 
 }

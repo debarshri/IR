@@ -15,7 +15,6 @@ try{
 View view = new View();
 view.createIndex();
 out.write("Indexes Created <br /><br />");
-out.write("Time Taken : "+view.getTimeTaken());
 }catch(Exception e)
 {
 e.printStackTrace();

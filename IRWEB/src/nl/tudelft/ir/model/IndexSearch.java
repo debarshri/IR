@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import nl.tudelft.ir.controller.SearchIndexController;
+import nl.tudelft.ir.synonym.SynonymAnalyzer;
+import nl.tudelft.ir.synonym.SynonymEngine;
 import nl.tudelft.ir.types.Result;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -70,11 +72,17 @@ public class IndexSearch {
 			 * 
 			 */
 
-			spellChecker = new SpellChecker(FSDirectory.open(new File(conf
-					.getIndexPath())));
+			
 			IndexSearcher searcher = new IndexSearcher(reader);
-			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+			//Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+			SynonymEngine engine = new SynonymEngine();
+            Analyzer analyzer = new SynonymAnalyzer(engine);
 
+			System.out.println(conf.isSpellCheck());
+if(conf.isSpellCheck())
+{
+			spellChecker = new SpellChecker(FSDirectory.open(new File(conf
+				.getIndexPath())));
 			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_31,
 					analyzer);
 
@@ -83,7 +91,7 @@ public class IndexSearch {
 
 			String[] suggestions = spellChecker.suggestSimilar(queryString, 5);
 			setDidYouMean(suggestions);
-
+}
 			BufferedReader in = null;
 
 			QueryParser parser = new QueryParser(Version.LUCENE_31, field,
